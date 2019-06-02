@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="default_elevation">12dp</dimen>
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_little">8dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_big">20dp</dimen>
+    <dimen name="margin_large">26dp</dimen>
+    <dimen name="margin_huge">32dp</dimen>
+    <dimen name="margin_x_huge">80dp</dimen>
+
+    <dimen name="padding_tiny">4dp</dimen>
+    <dimen name="padding_little">8dp</dimen>
+    <dimen name="padding_small">12dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_big">20dp</dimen>
+    <dimen name="padding_large">26dp</dimen>
+    <dimen name="padding_huge">32dp</dimen>
+
+    <dimen name="text_size_tiny">4sp</dimen>
+    <dimen name="text_size_little">8sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_m_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_b_medium">18sp</dimen>
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="text_size_large">26sp</dimen>
+    <dimen name="text_size_huge">32sp</dimen>
+
+    <dimen name="default_button_height">40dp</dimen>
+    <dimen name="default_button_corner">6dp</dimen>
+    <dimen name="default_button_stroke_width">1dp</dimen>
+
+    <dimen name="repo_cell_image_size">50dp</dimen>
+    <dimen name="repo_detail_image_size">150dp</dimen>
+
+    <dimen name="settings_item_height">60dp</dimen>
+
+</resources>

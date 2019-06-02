@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Starter</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="not_valid_input">Not valid input</string>
+
+    <string name="save">Save</string>
+    <string name="next">Next</string>
+    <string name="settings">Settings</string>
+
+    <string name="intro">Intro</string>
+    <string name="example">Example</string>
+    <string name="repositories">Repositories</string>
+    <string name="repository">Repository</string>
+
+    <string name="unknown_error">Unknown error</string>
+
+    <string name="general_error_message">Something went wrong when connecting to the server</string>
+
+    <string name="notification_channel">Channel</string>
+    <string name="notification_title">Title</string>
+    <string name="notification_content">Main content</string>
+    <string name="notification_additional_content">Additional content</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorDialogBackground">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:gravity="center"
+        android:textColor="@color/colorDialogMainTitle"
+        android:textSize="@dimen/text_size_b_medium"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Unknown error occurred" />
+
+    <TextView
+        android:id="@+id/subTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:textColor="@color/colorDialogSubTitle"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        tools:text="Sorry, something went wrong" />
+
+    <TextView
+        android:id="@+id/okTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDialogPositiveButton"
+        android:textSize="@dimen/text_size_m_small"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/discardTextView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subTitleTextView" />
+
+    <TextView
+        android:id="@+id/discardTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:padding="@dimen/padding_medium"
+        android:text="@string/cancel"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDialogNegativeButton"
+        android:textSize="@dimen/text_size_m_small"
+        app:layout_constraintBottom_toBottomOf="@+id/okTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/okTextView"
+        app:layout_constraintTop_toTopOf="@+id/okTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

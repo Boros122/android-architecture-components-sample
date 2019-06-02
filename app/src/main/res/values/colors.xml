@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorRed">#e31f19</color>
+    <color name="colorGreen">#00945d</color>
+
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorLightGrey">#f2f2f2</color>
+    <color name="colorWarmGrey">#999999</color>
+    <color name="colorDarkGrey">#666666</color>
+
+    <color name="colorMainScreenBackground">@color/colorWhite</color>
+    <color name="colorIconDefault">@color/colorDarkGrey</color>
+    <color name="colorTextDefault">@color/colorDarkGrey</color>
+
+    <color name="colorLoadingContainer">@color/colorLightGrey</color>
+    <color name="colorLoadingProgressBar">@color/colorRed</color>
+
+    <color name="colorDivider">@color/colorWarmGrey</color>
+
+    <!-- Toolbar -->
+    <color name="colorToolbarBackground">@color/colorPrimary</color>
+    <color name="colorToolbarTitle">@color/colorWhite</color>
+    <color name="colorToolbarPopupBackground">@color/colorWhite</color>
+    <color name="colorToolbarPopupText">@color/colorDarkGrey</color>
+    <color name="colorToolbarIconTint">@color/colorWhite</color>
+
+    <!-- Dialog colors -->
+    <color name="colorDialogBackground">@color/colorWhite</color>
+    <color name="colorDialogMainTitle">@color/colorBlack</color>
+    <color name="colorDialogSubTitle">@color/colorDarkGrey</color>
+    <color name="colorDialogPositiveButton">@color/colorDarkGrey</color>
+    <color name="colorDialogNegativeButton">@color/colorWarmGrey</color>
+    <color name="colorHighlighted">@color/colorAccent</color>
+    <color name="colorNormal">@color/colorAccent</color>
+    <color name="colorActivated">@color/colorAccent</color>
+
+    <!-- Text Input colors -->
+    <color name="colorTextInputError">@color/colorRed</color>
+    <color name="colorTextInputHint">@color/colorWarmGrey</color>
+    <color name="colorTextInput">@color/colorDarkGrey</color>
+
+    <color name="colorDefaultButtonBackground">@color/colorPrimary</color>
+    <color name="colorDefaultButtonText">@color/colorWhite</color>
+    <color name="colorDefaultBorderedButtonBackground">@color/colorWhite</color>
+    <color name="colorDefaultBorderedButtonStroke">@color/colorPrimary</color>
+    <color name="colorDefaultBorderedButtonText">@color/colorPrimary</color>
+
+</resources>

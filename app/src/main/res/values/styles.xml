@@ -1,0 +1,75 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/colorTransparent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="AppTheme.TextFloatLabelAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/colorTextInputHint</item>
+        <item name="android:textSize">@dimen/text_size_little</item>
+    </style>
+
+    <style name="AppTheme.TextErrorAppearance" parent="TextAppearance.Design.Error">
+        <item name="android:textColor">@color/colorTextInputError</item>
+        <item name="android:textSize">@dimen/text_size_little</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="errorTextAppearance">@style/AppTheme.TextErrorAppearance</item>
+        <item name="counterTextAppearance">@style/TextAppearance.Design.Counter</item>
+        <item name="counterOverflowTextAppearance">@style/TextAppearance.Design.Counter.Overflow
+        </item>
+        <item name="colorControlNormal">@color/colorNormal</item>
+        <item name="colorControlActivated">@color/colorActivated</item>
+        <item name="colorControlHighlight">@color/colorHighlighted</item>
+        <item name="android:textColor">@color/colorTextInput</item>
+        <item name="android:textSize">@dimen/text_size_m_small</item>
+    </style>
+
+    <style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="actionMenuTextColor">@color/colorToolbarTitle</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+        <item name="colorControlNormal">@color/colorToolbarIconTint</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert</item>
+        <item name="android:tint">@color/colorToolbarIconTint</item>
+    </style>
+
+    <style name="ToolBarPopupStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/colorToolbarPopupBackground</item>
+        <item name="android:textColor">@color/colorToolbarPopupText</item>
+    </style>
+
+    <style name="DefaultButtonStyle">
+        <item name="android:layout_height">@dimen/default_button_height</item>
+        <item name="android:background">@drawable/default_button_background</item>
+        <item name="android:textColor">@color/colorDefaultButtonText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DefaultBorderedButtonStyle">
+        <item name="android:layout_height">@dimen/default_button_height</item>
+        <item name="android:background">@drawable/default_bordered_button_background</item>
+        <item name="android:textColor">@color/colorDefaultBorderedButtonText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="titleText" format="string" />
+
+    <declare-styleable name="ExampleView">
+        <attr name="exampleString" format="string" />
+        <attr name="exampleReference" format="reference" />
+        <attr name="exampleDimension" format="dimension" />
+        <attr name="exampleInteger" format="integer" />
+        <attr name="exampleColor" format="color" />
+        <attr name="exampleBoolean" format="boolean" />
+        <attr name="exampleEnum" format="enum">
+            <enum name="firstExample" value="0" />
+            <enum name="secondExample" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SettingsItem">
+        <attr name="titleText" />
+        <attr name="subTitleText" format="string" />
+        <attr name="settingsIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SettingsCheckboxItem">
+        <attr name="titleText" />
+    </declare-styleable>
+
+</resources>
