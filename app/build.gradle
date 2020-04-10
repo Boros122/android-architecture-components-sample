@@ -23,27 +23,33 @@ private static String generateVersionName(int major, int minor, int patch) {
 }
 
 android {
-    signingConfigs {
-        signingConfig {
-            keyAlias "basic_key"
-            keyPassword "Ab12Cd34"
-            storeFile file("${projectDir.path}/keys/basic.jks")
-            storePassword "Ab12Cd34"
-        }
-    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.boros.android.starter"
         minSdkVersion minimumSdkVersion
         targetSdkVersion 29
+        versionCode generateVersionCode(0, 0, 1)
+        versionName generateVersionName(0, 0, 1)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        buildConfigField "String", "CLIENT_ID", "\"android\""
+        buildConfigField "String", "CLIENT_SECRET", getApiSecret()
+    }
+    signingConfigs {
+        signingConfig {
+            Properties properties = getLocalProperties()
+            keyAlias properties.getProperty("sampleKeyAlias")
+            keyPassword properties.getProperty("sampleKeyPassword")
+            storeFile file("${projectDir.path}/keys/basic")
+            storePassword properties.getProperty("sampleKeyPassword")
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
             zipAlignEnabled true
+            signingConfig signingConfigs.signingConfig
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
         debug {
@@ -77,44 +83,84 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    // Test
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
-
-    // AndroidX
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.android.material:material:1.1.0"
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
-    implementation "androidx.room:room-runtime:2.2.5"
-    kapt "androidx.room:room-compiler:2.2.5"
-    implementation "android.arch.work:work-runtime:1.0.1"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation "androidx.core:core-ktx:1.2.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3"
+    implementation "androidx.work:work-runtime:$workVersion"
+
+    // Testing
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    testImplementation "org.mockito:mockito-core:3.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "androidx.arch.core:core-testing:$archCoreVersion"
+    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+
+    // Architecture Components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment:1.0.0"
     implementation "android.arch.navigation:navigation-ui:1.0.0"
 
-    // Retrofit
-    implementation "com.google.code.gson:gson:2.8.5"
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // DI
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Network
     implementation "com.squareup.retrofit2:retrofit:2.7.1"
     implementation "com.squareup.retrofit2:converter-gson:2.7.1"
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.2"
 
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // EventBus
     implementation "org.greenrobot:eventbus:3.2.0"
-    implementation "com.github.bumptech.glide:glide:4.11.0"
-    implementation "org.jdeferred:jdeferred-core:1.2.6"
+
+    // Facebook
+    implementation "com.facebook.android:facebook-login:$facebookVersion"
+
+    // Google Play Services
+    implementation "com.google.android.gms:play-services-auth:$playServicesAuthVersion"
+
+    // Else
     implementation "jp.wasabeef:recyclerview-animators:3.0.0"
     implementation "de.hdodenhof:circleimageview:2.2.0"
-    implementation "com.facebook.android:facebook-login:5.13.0"
+    implementation "org.jdeferred:jdeferred-core:1.2.6"
 
     // Leak canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.2"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2"
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:1.6.2"
+}
+
+String getApiSecret() {
+    return "\"" + getLocalProperties().getProperty("apiSecret") + "\""
+}
+
+Properties getLocalProperties() {
+    Properties properties = new Properties()
+    def localPropertiesFile = project.rootProject.file("local.properties")
+    if (localPropertiesFile.canRead()) {
+        properties.load(localPropertiesFile.newDataInputStream())
+    }
+    return properties
 }
