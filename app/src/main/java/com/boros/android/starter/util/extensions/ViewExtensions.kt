@@ -52,7 +52,6 @@ fun View?.showSoftKeyboard() {
     imm?.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
 
-
 fun View?.hideSoftKeyboard() {
     this?.context?.let { context ->
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE)

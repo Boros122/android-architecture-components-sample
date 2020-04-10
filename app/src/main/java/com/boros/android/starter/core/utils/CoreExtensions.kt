@@ -5,7 +5,7 @@ import com.boros.android.starter.core.repository.RepositoryFactory
 import okhttp3.ResponseBody
 
 fun ResponseBody?.message(errorMessage: String): String {
-    if (this?.contentType()?.subtype() == "html") {
+    if (this?.contentType()?.subtype == "html") {
         return errorMessage
     }
 

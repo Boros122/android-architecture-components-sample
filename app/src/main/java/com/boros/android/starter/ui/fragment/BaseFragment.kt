@@ -19,7 +19,7 @@ open class BaseFragment : Fragment() {
 
     private val TAG = this.javaClass.name
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d(TAG, "onAttachFragment")
     }
@@ -86,7 +86,7 @@ open class BaseFragment : Fragment() {
         Log.d(TAG, "onDestroy")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         updateMenuIconColor(menu)
         super.onCreateOptionsMenu(menu, inflater)
     }

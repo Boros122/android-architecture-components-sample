@@ -48,7 +48,7 @@ open class BaseActivity : AppCompatActivity() {
         Log.d(TAG, "onDestroy")
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState")
     }

@@ -34,7 +34,7 @@ object FileUtil {
         val result: String
         val cursor = context?.contentResolver?.query(contentURI, null, null, null, null)
         if (cursor == null) {
-            result = contentURI.path
+            result = contentURI.path ?: ""
         } else {
             cursor.moveToFirst()
             val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)

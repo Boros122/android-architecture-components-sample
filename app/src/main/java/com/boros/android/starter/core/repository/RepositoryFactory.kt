@@ -94,7 +94,7 @@ object RepositoryFactory {
             val request = chain.request()
             val response = chain.proceed(request)
 
-            if (response.code() == 500) {
+            if (response.code == 500) {
                 response
             } else response
         }
