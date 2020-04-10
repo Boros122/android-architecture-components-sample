@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorMainScreenBackground"
-    tools:context="com.boros.android.starter.ui.fragment.RepoListFragment">
+    tools:context="com.boros.android.starter.features.main.repoList.RepoListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

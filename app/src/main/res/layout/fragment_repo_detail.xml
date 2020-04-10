@@ -7,7 +7,7 @@
     android:background="@color/colorMainScreenBackground"
     android:paddingStart="@dimen/padding_medium"
     android:paddingEnd="@dimen/padding_medium"
-    tools:context="com.boros.android.starter.ui.fragment.RepoDetailFragment">
+    tools:context="com.boros.android.starter.features.main.repoDetail.RepoDetailFragment">
 
     <ImageView
         android:id="@+id/ownerImageView"

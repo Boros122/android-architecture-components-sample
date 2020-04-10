@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.boros.android.starter.ui.activity.SplashScreenActivity"
+            android:name="com.boros.android.starter.features.splash.SplashScreenActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme">
@@ -33,12 +33,12 @@
         </activity>
 
         <activity
-            android:name="com.boros.android.starter.ui.activity.MainActivity"
+            android:name="com.boros.android.starter.features.main.MainActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" />
 
         <service
-            android:name="com.boros.android.starter.servicies.MyService"
+            android:name="com.boros.android.starter.shared.servicies.MyService"
             android:enabled="true" />
 
     </application>

@@ -1,9 +1,9 @@
 package com.boros.android.starter
 
 import android.app.Application
-import com.boros.android.starter.config.ConfigurationManager
+import com.boros.android.starter.shared.config.ConfigurationManager
 import com.boros.android.starter.core.repository.RepositoryFactory
-import com.boros.android.starter.sharedPreferences.SharedPreferencesManager
+import com.boros.android.starter.shared.sharedPreferences.SharedPreferencesManager
 import com.squareup.leakcanary.LeakCanary
 
 class BaseApplication : Application() {
