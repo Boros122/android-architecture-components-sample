@@ -1,60 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMainScreenBackground"
-    android:paddingStart="@dimen/padding_medium"
-    android:paddingEnd="@dimen/padding_medium"
-    tools:context="com.boros.android.starter.features.main.repoDetail.RepoDetailFragment">
+    android:background="@color/colorMainScreenBackground">
 
-    <ImageView
-        android:id="@+id/ownerImageView"
-        android:layout_width="@dimen/repo_detail_image_size"
-        android:layout_height="@dimen/repo_detail_image_size"
-        android:layout_marginTop="@dimen/margin_huge"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_medium"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-    <TextView
-        android:id="@+id/repoNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_medium"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ownerImageView"
-        tools:text="Example text" />
+        <ImageView
+            android:id="@+id/ownerImageView"
+            android:layout_width="@dimen/repo_detail_image_size"
+            android:layout_height="@dimen/repo_detail_image_size"
+            android:layout_marginTop="@dimen/margin_huge"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/ownerNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_small"
-        android:textStyle="normal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repoNameTextView"
-        tools:text="Example text" />
+        <TextView
+            android:id="@+id/repoNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerImageView"
+            tools:text="Example text" />
 
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_small"
-        android:textStyle="normal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ownerNameTextView"
-        tools:text="Example text" />
+        <TextView
+            android:id="@+id/ownerNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repoNameTextView"
+            tools:text="Example text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerNameTextView"
+            tools:text="Example text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/emptyScreenContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.boros.android.starter.shared.ui.view.EmptyScreenView
+            android:id="@+id/emptyScreenView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</FrameLayout>
+

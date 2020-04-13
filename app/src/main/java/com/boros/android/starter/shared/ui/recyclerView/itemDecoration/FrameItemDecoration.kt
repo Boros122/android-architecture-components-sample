@@ -7,7 +7,7 @@ import com.boros.android.starter.R
 
 class FrameItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private var dividerLine = context.getDrawable(R.drawable.divider)
+    private var dividerLine = context.getDrawable(R.drawable.background_divider)
 
     override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         val childCount = parent.childCount

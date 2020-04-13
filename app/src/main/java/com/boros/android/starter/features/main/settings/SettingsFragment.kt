@@ -1,20 +1,36 @@
 package com.boros.android.starter.features.main.settings
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.boros.android.starter.R
 import com.boros.android.starter.shared.model.ToolbarModel
 import com.boros.android.starter.shared.sharedPreferences.SharedPreferencesManager
 import com.boros.android.starter.shared.ui.fragment.BaseFragment
 import com.boros.android.starter.shared.workers.WorkUtil
 import kotlinx.android.synthetic.main.fragment_settings.*
+import javax.inject.Inject
 
 class SettingsFragment : BaseFragment() {
 
-    private lateinit var viewModel: SettingsViewModel
+    // region Properties
+
+    @Inject
+    lateinit var sharedPreferencesManager: SharedPreferencesManager
+
+    private val viewModel by viewModels<SettingsViewModel> { viewModelFactory }
+
+    // endregion
+
+    // region Lifecycle
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -26,15 +42,18 @@ class SettingsFragment : BaseFragment() {
         init()
     }
 
+    // endregion
+
+    // region Private Methods
+
     private fun init() {
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
         updateToolbar(ToolbarModel(title = getString(R.string.settings), isBackIconNeeded = true))
 
         settingsItem?.setOnClickListener { }
         settingsCheckboxItem?.addCheckChangedListener(object : SettingsCheckboxItemView.CheckChangedListener {
             override fun onCheckChanged(isChecked: Boolean) {
-                SharedPreferencesManager.settings.isAlertNotificationEnabled = isChecked
-                if(isChecked) {
+                sharedPreferencesManager.settings.isAlertNotificationEnabled = isChecked
+                if (isChecked) {
                     WorkUtil.scheduleAlertNotificationWork()
                 } else {
                     WorkUtil.cancelAlertNotificationWorker()
@@ -42,5 +61,7 @@ class SettingsFragment : BaseFragment() {
             }
         })
     }
+
+    // endregion
 
 }

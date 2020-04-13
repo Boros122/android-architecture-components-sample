@@ -1,10 +1,11 @@
 package com.boros.android.starter.features.intro
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.boros.android.starter.R
 import com.boros.android.starter.shared.model.ToolbarModel
@@ -12,10 +13,28 @@ import com.boros.android.starter.shared.sharedPreferences.SharedPreferencesManag
 import com.boros.android.starter.shared.ui.fragment.BaseFragment
 import com.boros.android.starter.shared.util.manager.NavigationManager
 import kotlinx.android.synthetic.main.fragment_intro.*
+import javax.inject.Inject
 
 class IntroFragment : BaseFragment() {
 
-    private lateinit var viewModel: IntroViewModel
+    // region Properties
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
+    @Inject
+    lateinit var sharedPreferencesManager: SharedPreferencesManager
+
+    private val viewModel by viewModels<IntroViewModel> { viewModelFactory }
+
+    // endregion
+
+    // region Lifecycle
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainComponent.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +50,18 @@ class IntroFragment : BaseFragment() {
         init()
     }
 
+    // endregion
+
+    // region Private Methods
+
     private fun init() {
-        viewModel = ViewModelProviders.of(this).get(IntroViewModel::class.java)
         updateToolbar(ToolbarModel(title = getString(R.string.intro)))
         nextButton?.setOnClickListener {
-            NavigationManager.navigateToRepoList(findNavController(this), true)
-            SharedPreferencesManager.settings.isIntroPassed = true
+            navigationManager.navigateToRepoList(findNavController(this), true)
+            sharedPreferencesManager.settings.isIntroPassed = true
         }
     }
+
+    // endregion
 
 }

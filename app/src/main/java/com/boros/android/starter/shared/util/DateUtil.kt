@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import java.util.*
 
+// TODO refactor
 object DateUtil {
 
     val standardFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

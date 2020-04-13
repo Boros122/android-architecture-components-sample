@@ -9,7 +9,7 @@
         android:id="@+id/introFragment"
         android:name="com.boros.android.starter.features.intro.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" >
+        tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/action_introFragment_to_exampleFragment"
             app:destination="@id/repoListFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/repoListFragment"
         android:name="com.boros.android.starter.features.main.repoList.RepoListFragment"
         android:label="fragment_example"
-        tools:layout="@layout/fragment_repo_list" >
+        tools:layout="@layout/fragment_repo_list">
         <action
             android:id="@+id/action_repoListFragment_to_repoDetailFragment"
             app:destination="@id/repoDetailFragment" />
@@ -30,7 +30,7 @@
         android:id="@+id/repoDetailFragment"
         android:name="com.boros.android.starter.features.main.repoDetail.RepoDetailFragment"
         android:label="fragment_repo_detail"
-        tools:layout="@layout/fragment_repo_detail" >
+        tools:layout="@layout/fragment_repo_detail">
         <argument
             android:name="repoId"
             app:argType="integer" />

@@ -8,16 +8,26 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.boros.android.starter.R
+import com.boros.android.starter.di.components.MainComponent
+import com.boros.android.starter.features.main.MainActivity
 import com.boros.android.starter.shared.event.InitialEvent
 import com.boros.android.starter.shared.model.ToolbarModel
-import com.boros.android.starter.features.main.MainActivity
+import com.boros.android.starter.shared.ui.activity.BaseActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
 
     private val className = this.javaClass.name
+
+    val mainComponent: MainComponent
+        get() = (activity as BaseActivity).mainComponent
+
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -108,7 +118,7 @@ abstract class BaseFragment : Fragment() {
 
     @Subscribe
     fun initialSubscribe(event: InitialEvent) {
-
+        // Nothing to do here
     }
 
 }

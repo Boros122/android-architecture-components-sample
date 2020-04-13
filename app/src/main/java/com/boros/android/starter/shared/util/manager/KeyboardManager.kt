@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 
+// TODO refactor
 object KeyboardManager {
 
     fun hideSoftKeyboard(context: Context?) {

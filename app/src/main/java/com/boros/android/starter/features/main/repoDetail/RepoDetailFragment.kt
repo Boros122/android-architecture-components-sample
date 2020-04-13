@@ -1,37 +1,69 @@
 package com.boros.android.starter.features.main.repoDetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.boros.android.starter.R
-import com.boros.android.starter.core.ResponseWrapper
-import com.boros.android.starter.core.model.GithubRepo
 import com.boros.android.starter.shared.model.ToolbarModel
 import com.boros.android.starter.shared.ui.fragment.BaseFragment
 import com.boros.android.starter.shared.util.GlideUtil
 import com.boros.android.starter.shared.util.extensions.gone
 import com.boros.android.starter.shared.util.extensions.reObserve
 import com.boros.android.starter.shared.util.extensions.visible
-import com.boros.android.starter.shared.util.manager.DialogManager
-import com.boros.android.starter.shared.util.manager.LoadingManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_repo_detail.*
 
 class RepoDetailFragment : BaseFragment() {
 
-    private lateinit var viewModel: RepoDetailViewModel
+    // region Properties
 
-    private val githubRepositoryLiveDataObserver = Observer<ResponseWrapper<GithubRepo?, String?>?> {
-        if (it?.data != null) {
-            updateUi(it.data!!)
-            LoadingManager.endLoading(context)
-        } else if (it?.error != null) {
-            DialogManager.showInfoDialog(context, it.error!!)
-            LoadingManager.endLoading(context)
+    private val viewModel by viewModels<RepoDetailViewModel> { viewModelFactory }
+
+    private val errorObserver: Observer<String> = Observer { error ->
+        showEmptyScreen()
+        showError(error)
+    }
+
+    private val repoDetailScreenModelObserver: Observer<RepoDetailScreenModel> = Observer { model ->
+        showContent()
+        updateUI(model)
+    }
+
+    private fun updateUI(model: RepoDetailScreenModel) {
+        Glide.with(this)
+                .load(model.avatarUrl)
+                .apply(GlideUtil.circleRequestOption())
+                .into(ownerImageView)
+
+        repoNameTextView?.text = model.repoName
+
+        if (model.ownerName != null) {
+            ownerNameTextView?.visible()
+            ownerNameTextView?.text = model.ownerName
+        } else {
+            ownerNameTextView?.gone()
         }
+
+        if (model.description != null) {
+            descriptionTextView?.visible()
+            descriptionTextView?.text = model.description
+        } else {
+            descriptionTextView?.gone()
+        }
+    }
+
+    // endregion
+
+    // region Lifecycle
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,40 +76,36 @@ class RepoDetailFragment : BaseFragment() {
         init()
     }
 
+    // endregion
+
+    // region Private Methods
+
     private fun init() {
-        viewModel = ViewModelProviders.of(this).get(RepoDetailViewModel::class.java)
         arguments?.let { viewModel.repoId = RepoDetailFragmentArgs.fromBundle(it).repoId }
         updateToolbar(ToolbarModel(title = getString(R.string.repository), isBackIconNeeded = true))
         viewModel.requestData()
-        addObserver()
+        setupObservers()
     }
 
-    private fun addObserver() {
-        viewModel.githubRepositoryLiveData?.reObserve(this, githubRepositoryLiveDataObserver)
+    private fun setupObservers() {
+        viewModel.repoDetailScreenModelLiveData.reObserve(this, repoDetailScreenModelObserver)
+        viewModel.errorLiveData.reObserve(this, errorObserver)
     }
 
-    private fun updateUi(githubRepo: GithubRepo) {
-        Glide.with(this)
-                .load(githubRepo.owner?.avatarUrl)
-                .apply(GlideUtil.circleRequestOption())
-                .into(ownerImageView)
-
-        repoNameTextView?.text = githubRepo.name
-
-        if (githubRepo.owner?.login != null) {
-            ownerNameTextView?.visible()
-            ownerNameTextView?.text = githubRepo.owner?.login
-        } else {
-            ownerNameTextView?.gone()
-        }
-
-        if (githubRepo.description != null) {
-            descriptionTextView?.visible()
-            descriptionTextView?.text = githubRepo.description
-        } else {
-            descriptionTextView?.gone()
-        }
-
+    private fun showEmptyScreen() {
+        contentContainer?.gone()
+        emptyScreenContainer?.visible()
     }
+
+    private fun showContent() {
+        contentContainer?.visible()
+        emptyScreenContainer?.gone()
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    }
+
+    // endregion
 
 }

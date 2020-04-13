@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import java.io.File
 
+// TODO refactor
 object FileUtil {
 
     fun createProfilePictureFile(storageDir: File): File {

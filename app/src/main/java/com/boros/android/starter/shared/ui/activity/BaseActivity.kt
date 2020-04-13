@@ -3,13 +3,25 @@ package com.boros.android.starter.shared.ui.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.boros.android.starter.BaseApplication
+import com.boros.android.starter.di.components.MainComponent
 import com.boros.android.starter.shared.event.InitialEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
 
     private val className = this.javaClass.name
+
+    val mainComponent: MainComponent by lazy {
+        (application as BaseApplication).appComponent.mainComponent()
+                .create(supportFragmentManager)
+    }
+
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

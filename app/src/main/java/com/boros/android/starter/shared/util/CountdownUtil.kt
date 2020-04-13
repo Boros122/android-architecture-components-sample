@@ -2,6 +2,7 @@ package com.boros.android.starter.shared.util
 
 import android.os.CountDownTimer
 
+// TODO refactor
 object CountdownUtil {
 
     fun countdown(interval: Long, period: Long, periodicAction: () -> Unit, finishAction: () -> Unit) {

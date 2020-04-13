@@ -10,6 +10,73 @@ import java.util.Random;
 
 public class JavaTest {
 
+    private double epsilon = 1e-6;
+
+    private static boolean isPalindrome(String word) {
+        String reverseWord = "";
+        word = word.toLowerCase();
+        for (int i = word.length() - 1; i >= 0; i--) {
+            Character actualCharacter = word.charAt(i);
+            String actualString = actualCharacter.toString();
+            reverseWord = reverseWord.concat(actualString);
+        }
+        return reverseWord.equals(word);
+    }
+
+    public static boolean contains(Node root, int value) {
+        if (root.value == value) {
+            return true;
+        } else if (value < root.value && root.left != null) {
+            return contains(root.left, value);
+        } else if (value > root.value && root.right != null) {
+            return contains(root.right, value);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isBetterAcronym(String s1, String s2) {
+        char[] s1Chars = s1.toCharArray();
+        char[] s2Chars = s2.toCharArray();
+        Arrays.sort(s1Chars);
+        Arrays.sort(s2Chars);
+        return Arrays.equals(s1Chars, s2Chars);
+    }
+
+    public static boolean isAcronym(String s1, String s2) {
+
+        if (s1.length() != s2.length()) return false;
+
+        HashMap<Character, Integer> charCounts = new HashMap<>();
+
+        // Calculate chracter counts
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (charCounts.containsKey(s1.charAt(i))) {
+                charCounts.put(s1.charAt(i), charCounts.get(s1.charAt(i)) + 1);
+            } else {
+                charCounts.put(s1.charAt(i), 1);
+            }
+        }
+
+        // Compare counts with characters in s2
+
+        for (int i = 0; i < s2.length(); i++) {
+            if (charCounts.containsKey(s2.charAt(i))) {
+                charCounts.put(s2.charAt(i), charCounts.get(s2.charAt(i)) - 1);
+            } else {
+                return false;
+            }
+        }
+
+        // Check all letters matched
+        for (int count : charCounts.values()) {
+            if (count != 0) return false;
+        }
+
+        return true;
+    }
+
     @Test
     public void testPalindrome() {
         int a = 1;
@@ -33,51 +100,6 @@ public class JavaTest {
         }
         System.out.println(hashMap.get(5));
     }
-
-    private static boolean isPalindrome(String word) {
-        String reverseWord = "";
-        word = word.toLowerCase();
-        for (int i = word.length() - 1; i >= 0; i--) {
-            Character actualCharacter = word.charAt(i);
-            String actualString = actualCharacter.toString();
-            reverseWord = reverseWord.concat(actualString);
-        }
-        return reverseWord.equals(word);
-    }
-
-    class Node {
-        public int value;
-        public Node left, right;
-
-        public Node(int value, Node left, Node right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public static boolean contains(Node root, int value) {
-        if (root.value == value) {
-            return true;
-        } else if (value < root.value && root.left != null) {
-            return contains(root.left, value);
-        } else if (value > root.value && root.right != null) {
-            return contains(root.right, value);
-        } else {
-            return false;
-        }
-    }
-
-    @Test
-    public void testSearchTree() {
-        Node n1 = new Node(1, null, null);
-        Node n3 = new Node(3, null, null);
-        Node n2 = new Node(2, n1, n3);
-
-        System.out.println(contains(n2, 3));
-    }
-
-    private double epsilon = 1e-6;
 
 /*    @Test
     public void accountCannotHaveNegativeOverdraftLimit() {
@@ -133,55 +155,22 @@ public class JavaTest {
     }*/
 
     @Test
+    public void testSearchTree() {
+        Node n1 = new Node(1, null, null);
+        Node n3 = new Node(3, null, null);
+        Node n2 = new Node(2, n1, n3);
+
+        System.out.println(contains(n2, 3));
+    }
+
+    @Test
     public void testAcronym() {
         Assert.assertEquals(true, isAcronym("ALMA", "AMLA"));
         Assert.assertEquals(true, isBetterAcronym("ALMA", "AMLA"));
     }
 
-    public static boolean isBetterAcronym(String s1, String s2) {
-        char[] s1Chars = s1.toCharArray();
-        char[] s2Chars = s2.toCharArray();
-        Arrays.sort(s1Chars);
-        Arrays.sort(s2Chars);
-        return Arrays.equals(s1Chars, s2Chars);
-    }
-
-    public static boolean isAcronym(String s1, String s2) {
-
-        if (s1.length() != s2.length()) return false;
-
-        HashMap<Character, Integer> charCounts = new HashMap<>();
-
-        // Calculate chracter counts
-
-        for (int i = 0; i < s1.length(); i++) {
-            if (charCounts.containsKey(s1.charAt(i))) {
-                charCounts.put(s1.charAt(i), charCounts.get(s1.charAt(i)) + 1);
-            } else {
-                charCounts.put(s1.charAt(i), 1);
-            }
-        }
-
-        // Compare counts with characters in s2
-
-        for (int i = 0; i < s2.length(); i++) {
-            if (charCounts.containsKey(s2.charAt(i))) {
-                charCounts.put(s2.charAt(i), charCounts.get(s2.charAt(i)) - 1);
-            } else {
-                return false;
-            }
-        }
-
-        // Check all letters matched
-        for (int count : charCounts.values()) {
-            if (count != 0) return false;
-        }
-
-        return true;
-    }
-
     public String numerify(String numberString) {
-        if(numberString == null) {
+        if (numberString == null) {
             return null;
         }
         for (int i = 0; i < numberString.length(); i++) {
@@ -196,7 +185,7 @@ public class JavaTest {
     }
 
     public String bothify(String string) {
-        if(string == null) {
+        if (string == null) {
             return null;
         }
         for (int i = 0; i < string.length(); i++) {
@@ -205,7 +194,7 @@ public class JavaTest {
                 Random rand = new Random();
                 Integer randomNum = rand.nextInt(9);
                 string = string.replace(ch.toString(), randomNum.toString());
-            } else if(ch == '?') {
+            } else if (ch == '?') {
                 string = string.replace(ch.toString(), "a");
             }
         }
@@ -213,14 +202,14 @@ public class JavaTest {
     }
 
     public String letterify(String string) {
-        if(string == null) {
+        if (string == null) {
             return null;
         }
         for (int i = 0; i < string.length(); i++) {
             Character ch = string.charAt(i);
-            if(ch == '?') {
+            if (ch == '?') {
                 Random r = new Random();
-                Character c = (char)(r.nextInt(26) + 'a');
+                Character c = (char) (r.nextInt(26) + 'a');
                 string = string.replace(ch.toString(), c.toString());
             }
         }
@@ -238,7 +227,7 @@ public class JavaTest {
         //then
         Assert.assertTrue(result.matches("[0-9][0-9][0-9]"));
 
-        String result2= numerify("Test#");
+        String result2 = numerify("Test#");
 
         Assert.assertTrue(result2.matches("Test[0-9]"));
 
@@ -253,6 +242,16 @@ public class JavaTest {
         Assert.assertTrue(result4.matches("[a-z][a-z][a-z]"));
     }
 
+    class Node {
+        public int value;
+        public Node left, right;
+
+        public Node(int value, Node left, Node right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
 
 
 }

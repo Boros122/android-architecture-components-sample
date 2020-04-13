@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Keys -->
+    <string name="access_token_key" translatable="false">Authorization</string>
+    <string name="client_locale_key" translatable="false">Accepted-Language</string>
+    <string name="content_type_key" translatable="false">Content-Type</string>
+    <string name="accept_key" translatable="false">Accept</string>
+    <string name="connection_key" translatable="false">Connection</string>
+
+    <!-- Values -->
+    <string name="content_type_value" translatable="false">application/json</string>
+    <string name="accept_value" translatable="false">application/json</string>
+    <string name="connection_value" translatable="false">Keep-Alive</string>
+
+</resources>

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.boros.android.starter.R
+import com.boros.android.starter.shared.ui.recyclerView.BaseCellModel
 import com.boros.android.starter.shared.ui.view.BaseView
 import com.boros.android.starter.shared.util.extensions.gone
 import com.boros.android.starter.shared.util.extensions.visible
@@ -35,7 +36,7 @@ class OptionSelectorDialogView @JvmOverloads constructor(
 
     companion object {
         data class OptionSelectorDialogModel(val title: String? = null, val itemModels: ArrayList<ItemModel>, val listener: OptionSelectedListener)
-        data class ItemModel(val id: Int, val title: String)
+        data class ItemModel(override val cellId: String, val id: Int, val title: String) : BaseCellModel
         interface OptionSelectedListener {
             fun onOptionSelected(id: Int)
         }

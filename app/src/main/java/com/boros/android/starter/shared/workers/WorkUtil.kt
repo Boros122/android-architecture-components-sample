@@ -11,7 +11,7 @@ object WorkUtil {
     private var alertWorker: OneTimeWorkRequest? = null
 
     fun scheduleAlertNotificationWork() {
-        if(alertWorker == null) {
+        if (alertWorker == null) {
             alertWorker = OneTimeWorkRequest.Builder(AlertNotificationWorker::class.java).setInitialDelay(15, TimeUnit.MINUTES).build()
         }
         alertWorker?.let {

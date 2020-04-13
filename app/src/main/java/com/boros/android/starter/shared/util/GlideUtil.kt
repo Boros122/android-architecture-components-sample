@@ -5,6 +5,7 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
+// TODO refactor
 object GlideUtil {
 
     fun basicRequestOption(): RequestOptions {

@@ -5,11 +5,14 @@ import androidx.navigation.NavOptions
 import com.boros.android.starter.R
 import com.boros.android.starter.features.main.repoList.RepoListFragmentDirections
 import com.boros.android.starter.shared.sharedPreferences.SharedPreferencesManager
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object NavigationManager {
+@Singleton
+class NavigationManager @Inject constructor(private val sharedPreferencesManager: SharedPreferencesManager) {
 
     fun updateStartDestinationIfNeeded(navController: NavController) {
-        if (SharedPreferencesManager.settings.isIntroPassed && navController.currentDestination?.id == R.id.introFragment) {
+        if (sharedPreferencesManager.settings.isIntroPassed && navController.currentDestination?.id == R.id.introFragment) {
             navigateToRepoList(navController, true)
         }
     }

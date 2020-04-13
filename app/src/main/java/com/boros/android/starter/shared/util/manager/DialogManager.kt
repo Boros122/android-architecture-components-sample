@@ -8,6 +8,7 @@ import com.boros.android.starter.shared.ui.dialog.InfoDialogView
 import com.boros.android.starter.shared.ui.dialog.InputDialogView
 import com.boros.android.starter.shared.ui.dialog.optionSelector.OptionSelectorDialogView
 
+// TODO refactor
 object DialogManager {
 
     private var dialog: Dialog? = null

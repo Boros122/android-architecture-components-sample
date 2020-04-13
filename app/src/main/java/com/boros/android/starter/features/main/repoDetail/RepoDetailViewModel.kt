@@ -1,21 +1,45 @@
 package com.boros.android.starter.features.main.repoDetail
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;
-import com.boros.android.starter.core.ResponseWrapper
+import androidx.lifecycle.viewModelScope
 import com.boros.android.starter.core.model.GithubRepo
-import com.boros.android.starter.core.repository.RepositoryFactory
+import com.boros.android.starter.core.repository.githubRepository.GithubRepository
+import com.boros.android.starter.core.repository.utils.Result
+import com.boros.android.starter.core.repository.utils.enums.RequestType
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RepoDetailViewModel : ViewModel() {
-
-    var githubRepositoryLiveData: LiveData<ResponseWrapper<GithubRepo?, String?>>? = null
+class RepoDetailViewModel @Inject constructor(
+        private val githubRepository: GithubRepository
+) : ViewModel() {
 
     var repoId: Int = 0
 
+    val errorLiveData: MutableLiveData<String> = MutableLiveData()
+
+    val repoDetailScreenModelLiveData: MutableLiveData<RepoDetailScreenModel> = MutableLiveData()
+
     fun requestData() {
-        if (githubRepositoryLiveData == null) {
-            githubRepositoryLiveData = RepositoryFactory.getGithubRepository().getGithubRepository(repoId)
+        viewModelScope.launch {
+            githubRepository.getGithubRepository(RequestType.MEMORY, repoId).let { result ->
+                if (result is Result.Success) {
+                    repoDetailScreenModelLiveData.value = createRepoDetailScreenModel(result.data)
+                } else if (result is Result.Error) {
+                    errorLiveData.value = result.error.message
+                }
+            }
+
         }
+    }
+
+    private fun createRepoDetailScreenModel(githubRepo: GithubRepo): RepoDetailScreenModel {
+        return RepoDetailScreenModel(
+                avatarUrl = githubRepo.owner?.avatarUrl ?: "",
+                repoName = githubRepo.name ?: "",
+                ownerName = githubRepo.owner?.login,
+                description = githubRepo.description
+        )
     }
 
 }

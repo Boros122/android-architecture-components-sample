@@ -1,32 +1,53 @@
 package com.boros.android.starter.features.main.repoList
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.boros.android.starter.core.ResponseWrapper
+import androidx.lifecycle.viewModelScope
 import com.boros.android.starter.core.model.GithubRepo
-import com.boros.android.starter.core.repository.RepositoryFactory
-import com.boros.android.starter.shared.ui.recyclerView.BaseItemModel
+import com.boros.android.starter.core.repository.githubRepository.GithubRepository
+import com.boros.android.starter.core.repository.utils.Result
+import com.boros.android.starter.core.repository.utils.enums.RequestType
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RepoListViewModel : ViewModel() {
+class RepoListViewModel @Inject constructor(
+        private val githubRepository: GithubRepository
+) : ViewModel() {
 
-    var githubRepositoriesLiveData: LiveData<ResponseWrapper<ArrayList<GithubRepo>?, String?>>? = null
+    val loadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun requestData() {
-        if (githubRepositoriesLiveData == null) {
-            githubRepositoriesLiveData = RepositoryFactory.getGithubRepository().getGithubRepositories()
+    val errorLiveData: MutableLiveData<String> = MutableLiveData()
+
+    val cellModelLiveData: MutableLiveData<ArrayList<RepoCellModel>> = MutableLiveData()
+
+    fun fetchData() {
+        if (cellModelLiveData.value != null) {
+            return
+        }
+        viewModelScope.launch {
+            loadingLiveData.value = true
+            githubRepository.getGithubRepositories(RequestType.NETWORK).let { result ->
+                loadingLiveData.value = false
+                if (result is Result.Success) {
+                    cellModelLiveData.value = createCellModels(result.data)
+                } else if (result is Result.Error) {
+                    errorLiveData.value = result.error.message
+                }
+            }
         }
     }
 
-    fun createItemModels(repos: ArrayList<GithubRepo>?): ArrayList<BaseItemModel> {
-        val itemModels = ArrayList<BaseItemModel>()
+    private fun createCellModels(repos: ArrayList<GithubRepo>?): ArrayList<RepoCellModel> {
+        val itemModels = ArrayList<RepoCellModel>()
         repos?.forEach {
-            itemModels.add(createItemModel(it))
+            itemModels.add(createCellModel(it))
         }
         return itemModels
     }
 
-    private fun createItemModel(repo: GithubRepo): BaseItemModel {
-        return RepoItemModel(
+    private fun createCellModel(repo: GithubRepo): RepoCellModel {
+        return RepoCellModel(
+                cellId = repo.id.toString(),
                 repoId = repo.id,
                 repoName = repo.name ?: "",
                 ownerName = repo.owner?.login,

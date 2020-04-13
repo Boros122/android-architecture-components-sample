@@ -34,6 +34,8 @@ android {
         multiDexEnabled true
         buildConfigField "String", "CLIENT_ID", "\"android\""
         buildConfigField "String", "CLIENT_SECRET", getApiSecret()
+        buildConfigField "String", "DATABASE_NAME", getDatabaseName()
+        buildConfigField "String", "BASE_URL", getBaseUrl()
     }
     signingConfigs {
         signingConfig {
@@ -154,6 +156,14 @@ dependencies {
 
 String getApiSecret() {
     return "\"" + getLocalProperties().getProperty("apiSecret") + "\""
+}
+
+String getDatabaseName() {
+    return "\"" + getLocalProperties().getProperty("databaseName") + "\""
+}
+
+String getBaseUrl() {
+    return "\"" + getLocalProperties().getProperty("baseUrl") + "\""
 }
 
 Properties getLocalProperties() {

@@ -7,7 +7,7 @@ import com.boros.android.starter.R
 
 class DividerItemDecoration(context: Context?) : RecyclerView.ItemDecoration() {
 
-    private val dividerLine = context?.getDrawable(R.drawable.divider)
+    private val dividerLine = context?.getDrawable(R.drawable.background_divider)
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         val left = parent.paddingLeft

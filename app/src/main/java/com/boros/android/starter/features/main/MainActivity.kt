@@ -3,8 +3,7 @@ package com.boros.android.starter.features.main
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.widget.FrameLayout
-import androidx.lifecycle.ViewModelProviders
+import androidx.activity.viewModels
 import androidx.navigation.Navigation
 import com.boros.android.starter.R
 import com.boros.android.starter.shared.broadcast.NetworkStateChangeReceiver
@@ -12,21 +11,28 @@ import com.boros.android.starter.shared.model.ToolbarModel
 import com.boros.android.starter.shared.ui.activity.BaseActivity
 import com.boros.android.starter.shared.util.manager.NavigationManager
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    // region Properties
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
+    private val viewModel by viewModels<MainViewModel> { viewModelFactory }
 
     private var networkStateChangeReceiver: NetworkStateChangeReceiver? = null
 
+    // endregion
+
+    // region Lifecycle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainComponent.inject(this)
         setContentView(R.layout.activity_main)
         init()
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     override fun onResume() {
@@ -39,33 +45,18 @@ class MainActivity : BaseActivity() {
         unregisterNetworkStateChangeBroadcastReceiver()
     }
 
-    override fun onStop() {
-        super.onStop()
-    }
+    // endregion
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
+    // region Private Methods
 
     private fun init() {
-        NavigationManager.updateStartDestinationIfNeeded(Navigation.findNavController(this, R.id.nav_host_fragment))
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        navigationManager.updateStartDestinationIfNeeded(Navigation.findNavController(this, R.id.nav_host_fragment))
         initToolbar()
     }
 
     private fun initToolbar() {
         setSupportActionBar(toolbar)
         toolbar?.setNavigationOnClickListener { onBackPressed() }
-    }
-
-    fun updateToolbar(toolbarModel: ToolbarModel) {
-        supportActionBar?.title = toolbarModel.title
-        toolbarModel.subTitle?.let {
-            supportActionBar?.subtitle = it
-        }
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(toolbarModel.isBackIconNeeded)
-        supportActionBar?.setDisplayShowHomeEnabled(toolbarModel.isBackIconNeeded)
     }
 
     private fun registerNetworkStateChangeBroadcastReceiver() {
@@ -79,6 +70,20 @@ class MainActivity : BaseActivity() {
         unregisterReceiver(networkStateChangeReceiver)
     }
 
-    fun getLoadingContainer(): FrameLayout = loadingContainer
+    // endregion
+
+    // region Public Methods
+
+    fun updateToolbar(toolbarModel: ToolbarModel) {
+        supportActionBar?.title = toolbarModel.title
+        toolbarModel.subTitle?.let {
+            supportActionBar?.subtitle = it
+        }
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(toolbarModel.isBackIconNeeded)
+        supportActionBar?.setDisplayShowHomeEnabled(toolbarModel.isBackIconNeeded)
+    }
+
+    // endregion
 
 }

@@ -4,29 +4,29 @@
 
     <!-- regular -->
     <font
+        android:font="@font/roboto_regular"
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/roboto_regular"
+        app:font="@font/roboto_regular"
         app:fontStyle="normal"
-        app:fontWeight="400"
-        app:font="@font/roboto_regular"/>
+        app:fontWeight="400" />
 
     <!-- italic -->
     <font
+        android:font="@font/roboto_italic"
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="@font/roboto_italic"
+        app:font="@font/roboto_italic"
         app:fontStyle="italic"
-        app:fontWeight="400"
-        app:font="@font/roboto_italic" />
+        app:fontWeight="400" />
 
     <!-- bold -->
     <font
+        android:font="@font/roboto_bold"
         android:fontStyle="normal"
         android:fontWeight="700"
-        android:font="@font/roboto_bold"
+        app:font="@font/roboto_bold"
         app:fontStyle="normal"
-        app:fontWeight="700"
-        app:font="@font/roboto_bold" />
+        app:fontWeight="700" />
 
 </font-family>

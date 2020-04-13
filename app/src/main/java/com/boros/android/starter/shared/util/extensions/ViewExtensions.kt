@@ -1,5 +1,6 @@
 package com.boros.android.starter.shared.util.extensions
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -103,6 +104,30 @@ fun View?.fadeOut(duration: Long = ANIMATION_DURATION) {
     fadeOut.duration = duration
     fadeOut.interpolator = AccelerateDecelerateInterpolator()
     fadeOut.start()
+}
+
+fun View?.fadeOut(duration: Long = ANIMATION_DURATION, completion: () -> Unit) {
+    val fadeOut = ObjectAnimator.ofFloat(this, "alpha", 1F, 0F)
+    fadeOut.duration = duration
+    fadeOut.interpolator = AccelerateDecelerateInterpolator()
+    fadeOut.start()
+    fadeOut.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+            completion()
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+
+        }
+    })
 }
 
 fun View?.animateHeight(fromSize: Int, toSize: Int, endAnimationAction: (() -> Unit)? = null, duration: Long = ANIMATION_DURATION) {

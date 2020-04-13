@@ -1,79 +1,88 @@
 package com.boros.android.starter.shared.ui.recyclerView
 
-import android.view.View
-import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-abstract class RecyclerViewAdapterBase<T, V : View> : RecyclerView.Adapter<ViewWrapper<V>>() {
+abstract class RecyclerViewAdapterBase<T : BaseCellModel, V : RecyclerView.ViewHolder> :
+        RecyclerView.Adapter<V>() {
 
     protected var items: MutableList<T> = ArrayList()
+    protected var itemClickListener: OnItemClickListener? = null
 
-    private var callback: AdapterChanged? = null
+    fun autoNotify(
+            newList: List<T>
+    ) {
+        val oldList = getCurrentItems()
+        updateItems(newList)
+        val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition].cellId == newList[newItemPosition].cellId
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition] == newList[newItemPosition]
+            }
+
+            override fun getOldListSize() = oldList.size
+            override fun getNewListSize() = newList.size
+        })
+        diff.dispatchUpdatesTo(this)
+    }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewWrapper<V> {
-        return ViewWrapper(onCreateItemView(parent, viewType))
+    fun addItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
-
-    protected abstract fun onCreateItemView(parent: ViewGroup, viewType: Int): V
 
     fun add(item: T?) {
-        if (item != null) {
-            items.add(item)
-            onChange()
-        }
+        item ?: return
+        items.add(item)
     }
 
-    operator fun set(position: Int, item: T) {
-        items[position] = item
-        onChange()
-    }
-
-    fun add(position: Int, item: T) {
+    fun add(position: Int, item: T?) {
+        item ?: return
         items.add(position, item)
-        onChange()
-    }
-
-    fun setWithoutNotifying(position: Int, item: T) {
-        items[position] = item
     }
 
     fun addAll(list: List<T>?) {
-        if (list != null) {
-            items.addAll(list)
-            onChange()
-        }
+        list ?: return
+        items.addAll(list)
     }
 
-    fun updateItems(list: ArrayList<T>?) {
-        if (list != null) {
-            items = ArrayList(list)
-            onChange()
-        }
+    fun set(position: Int, item: T?) {
+        item ?: return
+        items[position] = item
+    }
+
+    fun updateItems(list: List<T>?) {
+        list ?: return
+        items = ArrayList(list)
     }
 
     fun removeItem(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
+        if (position in 0 until items.size) {
+            items.removeAt(position)
+        }
     }
 
     fun removeItem(item: T?) {
-        if (item != null) {
-            val pos = items.indexOf(item)
-            if (pos >= 0) {
-                items.remove(item)
-                notifyItemRemoved(pos)
-            }
+        item ?: return
+        val itemsPosition = items.indexOf(item)
+        if (itemsPosition in 0 until items.size) {
+            items.remove(item)
         }
     }
 
     fun clear() {
         items.clear()
-        onChange()
+    }
+
+    fun getCurrentItems(): ArrayList<T> {
+        return ArrayList(items)
     }
 
     fun getItem(index: Int): T {
@@ -82,20 +91,5 @@ abstract class RecyclerViewAdapterBase<T, V : View> : RecyclerView.Adapter<ViewW
 
     fun size(): Int {
         return items.size
-    }
-
-    fun setOnChangeListener(callback: AdapterChanged) {
-        this.callback = callback
-    }
-
-    private fun onChange() {
-        if (callback != null) {
-            callback?.onChange()
-        }
-        //notifyDataSetChanged();
-    }
-
-    interface AdapterChanged {
-        fun onChange()
     }
 }

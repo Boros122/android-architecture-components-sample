@@ -1,13 +1,12 @@
 package com.boros.android.starter.shared.sharedPreferences
 
 import android.content.Context
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object SharedPreferencesManager {
+@Singleton
+class SharedPreferencesManager  @Inject constructor(context: Context){
 
-    lateinit var settings: Settings
-
-    fun init(context: Context) {
-        settings = Settings(context)
-    }
+    var settings: Settings = Settings(context)
 
 }

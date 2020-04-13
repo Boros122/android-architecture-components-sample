@@ -16,12 +16,18 @@
     <string name="repositories">Repositories</string>
     <string name="repository">Repository</string>
 
-    <string name="unknown_error">Unknown error</string>
-
-    <string name="general_error_message">Something went wrong when connecting to the server</string>
-
     <string name="notification_channel">Channel</string>
     <string name="notification_title">Title</string>
     <string name="notification_content">Main content</string>
     <string name="notification_additional_content">Additional content</string>
+
+    <!-- General errors -->
+    <string name="general_network_error_message">Something went wrong during server communication</string>
+    <string name="general_error_message">Something went wrong</string>
+    <string name="storage_error_message">Not found in the database</string>
+    <string name="memory_error_message">Not found in the memory</string>
+    <string name="unknown_error">Unknown error</string>
+
+    <string name="no_content">No content available</string>
+
 </resources>
