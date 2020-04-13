@@ -100,7 +100,16 @@ class RepoListFragment : BaseFragment() {
         updateToolbar(ToolbarModel(title = getString(R.string.repositories)))
         initRecyclerView()
         setupObservers()
-        viewModel.fetchData()
+        setupSwipeRefreshListener()
+        if (!viewModel.isDataAvailable()) {
+            viewModel.fetchData()
+        }
+    }
+
+    private fun setupSwipeRefreshListener() {
+        swipeRefreshLayout?.setOnRefreshListener {
+            viewModel.fetchData()
+        }
     }
 
     private fun setupObservers() {

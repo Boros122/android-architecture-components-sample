@@ -21,9 +21,6 @@ class RepoListViewModel @Inject constructor(
     val cellModelLiveData: MutableLiveData<ArrayList<RepoCellModel>> = MutableLiveData()
 
     fun fetchData() {
-        if (cellModelLiveData.value != null) {
-            return
-        }
         viewModelScope.launch {
             loadingLiveData.value = true
             githubRepository.getGithubRepositories(RequestType.NETWORK).let { result ->
@@ -36,6 +33,8 @@ class RepoListViewModel @Inject constructor(
             }
         }
     }
+
+    fun isDataAvailable() = cellModelLiveData.value != null
 
     private fun createCellModels(repos: ArrayList<GithubRepo>?): ArrayList<RepoCellModel> {
         val itemModels = ArrayList<RepoCellModel>()
