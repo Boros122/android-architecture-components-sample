@@ -31,7 +31,7 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <com.boros.android.starter.shared.ui.view.EmptyScreenView
+            <com.boros.android.sample.shared.ui.view.EmptyScreenView
                 android:id="@+id/emptyScreenView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

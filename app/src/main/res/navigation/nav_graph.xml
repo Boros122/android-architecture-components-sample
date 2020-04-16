@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.boros.android.starter.features.intro.IntroFragment"
+        android:name="com.boros.android.sample.features.intro.IntroFragment"
         android:label="fragment_intro"
         tools:layout="@layout/fragment_intro">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/repoListFragment"
-        android:name="com.boros.android.starter.features.main.repoList.RepoListFragment"
+        android:name="com.boros.android.sample.features.main.repoList.RepoListFragment"
         android:label="fragment_example"
         tools:layout="@layout/fragment_repo_list">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/repoDetailFragment"
-        android:name="com.boros.android.starter.features.main.repoDetail.RepoDetailFragment"
+        android:name="com.boros.android.sample.features.main.repoDetail.RepoDetailFragment"
         android:label="fragment_repo_detail"
         tools:layout="@layout/fragment_repo_detail">
         <argument
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.boros.android.starter.features.main.settings.SettingsFragment"
+        android:name="com.boros.android.sample.features.main.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -3,10 +3,6 @@
 buildscript {
     ext {
         kotlin_version = "1.3.71"
-        appId = "com.loginet.rentingo"
-        minimumSdkVersionNumer = 21
-        compileSdkVersionNumber = 29
-        targetSdkVersionNumber = 29
         archCoreVersion = '2.1.0'
         archLifecycleVersion = '2.2.0'
         roomVersion = '2.2.5'

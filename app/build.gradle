@@ -25,7 +25,7 @@ private static String generateVersionName(int major, int minor, int patch) {
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.boros.android.starter"
+        applicationId "com.boros.android.sample"
         minSdkVersion minimumSdkVersion
         targetSdkVersion 29
         versionCode generateVersionCode(0, 0, 1)

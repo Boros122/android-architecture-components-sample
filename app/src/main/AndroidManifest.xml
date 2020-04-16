@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.boros.android.starter">
+    package="com.boros.android.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name="com.boros.android.starter.BaseApplication"
+        android:name="com.boros.android.sample.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.boros.android.starter.features.splash.SplashScreenActivity"
+            android:name="com.boros.android.sample.features.splash.SplashScreenActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme">
@@ -33,12 +33,12 @@
         </activity>
 
         <activity
-            android:name="com.boros.android.starter.features.main.MainActivity"
+            android:name="com.boros.android.sample.features.main.MainActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" />
 
         <service
-            android:name="com.boros.android.starter.shared.servicies.MyService"
+            android:name="com.boros.android.sample.shared.servicies.MyService"
             android:enabled="true" />
 
     </application>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorMainScreenBackground"
-    tools:context="com.boros.android.starter.features.intro.IntroFragment">
+    tools:context="com.boros.android.sample.features.intro.IntroFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextButton"

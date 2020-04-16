@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorMainScreenBackground"
     android:orientation="vertical"
-    tools:context="com.boros.android.starter.features.main.settings.SettingsFragment">
+    tools:context="com.boros.android.sample.features.main.settings.SettingsFragment">
 
-    <com.boros.android.starter.features.main.settings.SettingsItemView
+    <com.boros.android.sample.features.main.settings.SettingsItemView
         android:id="@+id/settingsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:subTitleText="Asd"
         app:titleText="Something" />
 
-    <com.boros.android.starter.features.main.settings.SettingsCheckboxItemView
+    <com.boros.android.sample.features.main.settings.SettingsCheckboxItemView
         android:id="@+id/settingsCheckboxItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
