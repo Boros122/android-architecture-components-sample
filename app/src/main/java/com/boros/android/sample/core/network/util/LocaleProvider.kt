@@ -11,7 +11,7 @@ class LocaleProvider @Inject constructor(context: Context) {
 
     val locale: String = getLocale(context).toString()
 
-    @SuppressWarnings("deprecation")
+    @Suppress("DEPRECATION")
     private fun getLocale(context: Context): Locale {
         val configuration = context.resources.configuration
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

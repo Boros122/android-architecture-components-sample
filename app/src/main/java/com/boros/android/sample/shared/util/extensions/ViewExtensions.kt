@@ -6,6 +6,10 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
 import android.view.View
@@ -16,6 +20,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import kotlin.math.absoluteValue
+
 
 const val ANIMATION_DURATION = 300L
 
@@ -145,7 +150,7 @@ fun View?.animateHeight(fromSize: Int, toSize: Int, endAnimationAction: (() -> U
     animator.start()
 }
 
-@SuppressWarnings("deprecation")
+@Suppress("DEPRECATION")
 fun TextView.setHtmlText(htmlText: String) {
     this.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         Html.fromHtml(htmlText, Html.FROM_HTML_MODE_LEGACY)
@@ -179,11 +184,11 @@ inline fun View?.onScroll(crossinline callback: (oldX: Int, oldY: Int, newX: Int
 }
 
 fun View?.enableTouch() {
-    this?.setOnTouchListener { v, event -> false }
+    this?.setOnTouchListener { _, _ -> false }
 }
 
 fun View?.disableTouch() {
-    this?.setOnTouchListener { v, event -> true }
+    this?.setOnTouchListener { _, _ -> true }
 }
 
 fun View.fitWidthToScreen(context: Context?) {

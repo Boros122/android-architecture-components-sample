@@ -5,6 +5,4 @@ import com.boros.android.sample.di.scopes.ActivityScope
 import javax.inject.Inject
 
 @ActivityScope
-class SplashViewModel @Inject constructor() : ViewModel() {
-
-}
+class SplashViewModel @Inject constructor() : ViewModel()

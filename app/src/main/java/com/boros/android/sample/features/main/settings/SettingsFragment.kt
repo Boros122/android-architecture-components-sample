@@ -21,6 +21,9 @@ class SettingsFragment : BaseFragment() {
     @Inject
     lateinit var sharedPreferencesManager: SharedPreferencesManager
 
+    @Inject
+    lateinit var workUtil: WorkUtil
+
     private val viewModel by viewModels<SettingsViewModel> { viewModelFactory }
 
     // endregion
@@ -54,9 +57,9 @@ class SettingsFragment : BaseFragment() {
             override fun onCheckChanged(isChecked: Boolean) {
                 sharedPreferencesManager.settings.isAlertNotificationEnabled = isChecked
                 if (isChecked) {
-                    WorkUtil.scheduleAlertNotificationWork()
+                    workUtil.scheduleAlertNotificationWork()
                 } else {
-                    WorkUtil.cancelAlertNotificationWorker()
+                    workUtil.cancelAlertNotificationWorker()
                 }
             }
         })

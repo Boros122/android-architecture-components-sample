@@ -6,6 +6,11 @@ import androidx.core.content.edit
 
 class Settings(context: Context) {
 
+    private val accessTokenKey = "access_token"
+    private val userLoggedInKey = "user_logged_in"
+    private val isIntoPassedKey = "is_intro_passed"
+    private val isAlertNotificationEnabledKey = "is_alert_notification_enabled"
+
     private val prefKey = "prefKey"
 
     private val sharedPreferences: SharedPreferences
@@ -15,34 +20,34 @@ class Settings(context: Context) {
     var accessTokenChangeListener: AccessTokenChangeListener? = null
 
     var accessToken: String?
-        get() = sharedPreferences.getString(ACCESS_TOKEN, "")
+        get() = sharedPreferences.getString(accessTokenKey, "")
         set(accessToken) {
             sharedPreferences.edit {
-                putString(ACCESS_TOKEN, accessToken)
+                putString(accessTokenKey, accessToken)
             }
         }
 
     var isUserLoggedIn: Boolean
-        get() = sharedPreferences.getBoolean(USER_LOGGED_IN, false)
+        get() = sharedPreferences.getBoolean(userLoggedInKey, false)
         set(isUserLoggedIn) {
             sharedPreferences.edit {
-                putBoolean(USER_LOGGED_IN, isUserLoggedIn)
+                putBoolean(userLoggedInKey, isUserLoggedIn)
             }
         }
 
     var isIntroPassed: Boolean
-        get() = sharedPreferences.getBoolean(IS_INTRO_PASSED, false)
+        get() = sharedPreferences.getBoolean(isIntoPassedKey, false)
         set(isIntroPassed) {
             sharedPreferences.edit {
-                putBoolean(IS_INTRO_PASSED, isIntroPassed)
+                putBoolean(isIntoPassedKey, isIntroPassed)
             }
         }
 
     var isAlertNotificationEnabled: Boolean
-        get() = sharedPreferences.getBoolean(IS_ALERT_NOTIFICATION_ENABLED, false)
+        get() = sharedPreferences.getBoolean(isAlertNotificationEnabledKey, false)
         set(isAlertNotificationEnabled) {
             sharedPreferences.edit {
-                putBoolean(IS_ALERT_NOTIFICATION_ENABLED, isAlertNotificationEnabled)
+                putBoolean(isAlertNotificationEnabledKey, isAlertNotificationEnabled)
             }
         }
 
@@ -50,22 +55,15 @@ class Settings(context: Context) {
         sharedPreferences = context.getSharedPreferences(prefKey, Context.MODE_PRIVATE)
 
         changeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == USER_LOGGED_IN) {
+            if (key == userLoggedInKey) {
                 loggedInStateChangeListener?.onLoggedInStateChanged(isUserLoggedIn)
             }
-            if (key == ACCESS_TOKEN) {
+            if (key == accessTokenKey) {
                 accessTokenChangeListener?.onAccessTokenChanged(accessToken)
             }
         }
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(changeListener)
-    }
-
-    companion object {
-        private val ACCESS_TOKEN = "access_token"
-        private val USER_LOGGED_IN = "user_logged_in"
-        private val IS_INTRO_PASSED = "is_intro_passed"
-        private val IS_ALERT_NOTIFICATION_ENABLED = "is_alert_notification_enabled"
     }
 
 }

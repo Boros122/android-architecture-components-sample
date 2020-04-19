@@ -6,9 +6,12 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import java.io.File
+import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-// TODO refactor
-object FileUtil {
+@Singleton
+class FileUtil @Inject constructor() {
 
     fun createProfilePictureFile(storageDir: File): File {
         val deletedFile = File(storageDir, "profile_picture.jpg")
@@ -26,11 +29,12 @@ object FileUtil {
             val fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri
                     .toString())
             MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-                    fileExtension.toLowerCase())
+                    fileExtension.toLowerCase(Locale.ROOT))
         }
         return mimeType ?: "image/png"
     }
 
+    @Suppress("DEPRECATION")
     fun getRealPathFromURI(context: Context?, contentURI: Uri): String {
         val result: String
         val cursor = context?.contentResolver?.query(contentURI, null, null, null, null)

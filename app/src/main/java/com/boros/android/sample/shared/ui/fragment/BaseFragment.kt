@@ -116,6 +116,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe
     fun initialSubscribe(event: InitialEvent) {
         // Nothing to do here

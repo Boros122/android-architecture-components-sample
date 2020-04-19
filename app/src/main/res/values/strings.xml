@@ -12,6 +12,7 @@
     <string name="settings">Settings</string>
 
     <string name="intro">Intro</string>
+    <string name="welcome">Welcome</string>
     <string name="example">Example</string>
     <string name="repositories">Repositories</string>
     <string name="repository">Repository</string>

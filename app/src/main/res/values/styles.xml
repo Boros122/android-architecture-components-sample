@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:windowBackground">@color/colorMainScreenBackground</item>
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
@@ -49,7 +50,7 @@
     </style>
 
     <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_more_vert</item>
+        <item name="android:src">@drawable/ic_more_vertical</item>
         <item name="android:tint">@color/colorToolbarIconTint</item>
     </style>
 

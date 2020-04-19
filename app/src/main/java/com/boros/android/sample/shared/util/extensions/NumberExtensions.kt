@@ -2,6 +2,8 @@ package com.boros.android.sample.shared.util.extensions
 
 import java.text.NumberFormat
 import java.util.*
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 fun Double?.formatAccordingLocale(locale: Locale): String {
     if (this != null) {
@@ -11,9 +13,9 @@ fun Double?.formatAccordingLocale(locale: Locale): String {
     return ""
 }
 
-fun Double.precizeRound(): Double {
-    val scale = Math.pow(10.0, 2.0)
-    return Math.round(this * scale).toDouble() / scale
+fun Double.preciseRound(): Double {
+    val scale = 10.0.pow(2.0)
+    return (this * scale).roundToInt().toDouble() / scale
 }
 
 fun Double?.formatToString(): String {

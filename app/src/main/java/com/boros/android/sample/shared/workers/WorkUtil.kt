@@ -1,12 +1,16 @@
 package com.boros.android.sample.shared.workers
 
+import android.content.Context
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object WorkUtil {
+@Singleton
+class WorkUtil @Inject constructor(context: Context) {
 
-    private val workManager = WorkManager.getInstance()
+    private val workManager = WorkManager.getInstance(context)
 
     private var alertWorker: OneTimeWorkRequest? = null
 

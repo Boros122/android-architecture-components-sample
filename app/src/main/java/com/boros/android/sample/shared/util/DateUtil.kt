@@ -3,24 +3,29 @@ package com.boros.android.sample.shared.util
 import android.content.Context
 import android.os.Build
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-// TODO refactor
-object DateUtil {
+@Singleton
+class DateUtil @Inject constructor() {
 
-    val standardFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    val completeDateFormat = "yyyy-MM-dd HH:mm"
-    val yearShortMonthShortDayFormat = "yyyy.MM.dd."
-    val yearMonthShortDayFormat = "yyyy. MMMM d."
-    val detailedMonthDayFormat = "MMMM dd. EEEE"
-    val dayFormat = "EEEE"
-    val hourMinuteFormat = "HH:mm"
-    val monthFormat = "MMM"
-    val simpleDayFormat = "d"
+    companion object {
+        const val standardFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        const val completeDateFormat = "yyyy-MM-dd HH:mm"
+        const val yearShortMonthShortDayFormat = "yyyy.MM.dd."
+        const val yearMonthShortDayFormat = "yyyy. MMMM d."
+        const val detailedMonthDayFormat = "MMMM dd. EEEE"
+        const val dayFormat = "EEEE"
+        const val hourMinuteFormat = "HH:mm"
+        const val monthFormat = "MMM"
+        const val simpleDayFormat = "d"
+    }
 
     fun getCurrentDate(): Date {
         return Date()
     }
 
+    @Suppress("DEPRECATION")
     fun getLocaleFromContext(context: Context?): Locale {
         val configuration = context?.resources?.configuration
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

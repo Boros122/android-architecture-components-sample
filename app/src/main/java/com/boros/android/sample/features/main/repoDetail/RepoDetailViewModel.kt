@@ -1,7 +1,7 @@
 package com.boros.android.sample.features.main.repoDetail
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.boros.android.sample.core.model.GithubRepo
 import com.boros.android.sample.core.repository.githubRepository.GithubRepository

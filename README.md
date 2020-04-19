@@ -2,12 +2,12 @@
 
 A Sample project that uses ViewModel, LiveData, Room, Retrofit, Navigation, Dagger2 with an MVVM architecture.  
 The app uses the public github api for example data.  
-This applictaion contains a working example of Network, Database, Memory Cache and Repository layer init with Dagger2.  
+This application contains a working example of Network, Database, Memory Cache and Repository layer init with Dagger2.
 Coroutine examples. Suspended functions in Network, Database and Repository layer.  
-Onboarding flow example. (Just an Intro screen which is only availably after first start). 
+On boarding flow example. (Just an Intro screen which is only available after first start).
 Splash Screen example.  
 Managers like: LoadingManager, NavigationManager, DialogManager.  
-The project contains some unused components(broadcast reveicer, worker, notification etc.) and resources (anims, vertor drawables etc.) for only the sake of example.  
+The project contains some unused components(broadcast receiver, worker, notification etc.) and resources (anim, vector drawables etc.) for only the sake of example.
 Singing config example in gradle, sensitive and build related info stored in local.properties. 
 
 # Build info
@@ -25,7 +25,7 @@ You can add your jks file location in gradle in the signing config section at th
  - SplashScreen
  - Intro (appears only after first start)
  - RepoList (List of github repositories, recycler view example with diff util support)
- - RepoDetail (Detailed info of a seleted repo, example for data pass between Fragments)
+ - RepoDetail (Detailed info of a selected repo, example for data pass between Fragments)
  - Settings (Example for a simple settings screen, options saved into shared preferences)
 
 ### Used libraries and tools

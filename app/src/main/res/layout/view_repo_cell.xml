@@ -14,6 +14,7 @@
         android:id="@+id/ownerImageView"
         android:layout_width="@dimen/repo_cell_image_size"
         android:layout_height="@dimen/repo_cell_image_size"
+        android:contentDescription="@string/imageDesc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

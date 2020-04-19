@@ -19,9 +19,10 @@ abstract class BaseView @JvmOverloads constructor(context: Context?, attributeSe
         EventBus.getDefault().unregister(this)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe
     fun initialSubscribe(event: InitialEvent) {
-
+        // Nothing to do here
     }
 
 }

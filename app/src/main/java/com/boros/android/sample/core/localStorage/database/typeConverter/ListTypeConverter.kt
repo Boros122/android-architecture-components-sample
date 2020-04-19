@@ -8,14 +8,14 @@ import java.util.*
 
 class ListTypeConverter {
 
-    private val gson = Gson()
+    private val jsonConverter = Gson()
 
     @TypeConverter
     fun listToString(list: ArrayList<GithubRepo>?): String? {
         if (list == null) {
             return null
         }
-        return gson.toJson(list)
+        return jsonConverter.toJson(list)
     }
 
     @TypeConverter
@@ -24,7 +24,7 @@ class ListTypeConverter {
             return null
         }
         val type = object : TypeToken<ArrayList<GithubRepo>>() {}.type
-        return gson.fromJson(data, type)
+        return jsonConverter.fromJson(data, type)
     }
 
 }

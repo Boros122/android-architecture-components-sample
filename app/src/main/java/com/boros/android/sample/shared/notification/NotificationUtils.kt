@@ -16,16 +16,16 @@ import com.boros.android.sample.features.main.MainActivity
 
 object NotificationUtils {
 
-    private val NOTIFICATION_ID = 1138
+    private const val NOTIFICATION_ID = 1138
 
-    private val POSITIVE_ACTION = "positive"
-    private val NEGATIVE_ACTION = "negative"
+    private const val POSITIVE_ACTION = "positive"
+    private const val NEGATIVE_ACTION = "negative"
 
-    private val PENDING_INTENT_ID = 3417
+    private const val PENDING_INTENT_ID = 3417
 
-    private val CHANNEL_ID = "notification_channel"
-    private val POSITIVE_ACTION_PENDING_INTENT_ID = 1
-    private val NEGATIVE_ACTION_PENDING_INTENT_ID = 14
+    private const val CHANNEL_ID = "notification_channel"
+    private const val POSITIVE_ACTION_PENDING_INTENT_ID = 1
+    private const val NEGATIVE_ACTION_PENDING_INTENT_ID = 14
 
     fun clearAllNotifications(context: Context) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

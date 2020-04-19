@@ -70,8 +70,10 @@ abstract class BaseActivity : AppCompatActivity() {
         Log.d(className, "onRestoreInstanceState")
     }
 
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe
     fun initialSubscribe(event: InitialEvent) {
+        // Nothing to do here
     }
 
 }

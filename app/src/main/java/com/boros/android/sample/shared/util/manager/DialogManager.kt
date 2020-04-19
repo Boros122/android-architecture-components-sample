@@ -7,9 +7,11 @@ import com.boros.android.sample.shared.ui.dialog.ConfirmDialogView
 import com.boros.android.sample.shared.ui.dialog.InfoDialogView
 import com.boros.android.sample.shared.ui.dialog.InputDialogView
 import com.boros.android.sample.shared.ui.dialog.optionSelector.OptionSelectorDialogView
+import javax.inject.Inject
+import javax.inject.Singleton
 
-// TODO refactor
-object DialogManager {
+@Singleton
+class DialogManager @Inject constructor() {
 
     private var dialog: Dialog? = null
 
@@ -116,39 +118,5 @@ object DialogManager {
             }
         }
     }
-
-    //Examples
-    /*DialogManager.showConfirmDialog(this, "Message", null, {}, {})
-
-
-    val inputDialogModel = InputDialogView.Companion.InputDialogModel(
-            title = "This is the title",
-            subTitle = "This is the sub title",
-            hint = "This is the hint",
-            positiveAction = { addedInput ->
-
-            },
-            negativeAction = {
-
-            }
-    )
-
-    DialogManager.showInputDialog(this, inputDialogModel)
-
-
-    val itemModels = ArrayList<OptionSelectorDialogView.Companion.ItemModel>()
-    itemModels.add(OptionSelectorDialogView.Companion.ItemModel(1, "Follow"))
-    itemModels.add(OptionSelectorDialogView.Companion.ItemModel(2, "Un follow"))
-    itemModels.add(OptionSelectorDialogView.Companion.ItemModel(3, "Report user"))
-    itemModels.add(OptionSelectorDialogView.Companion.ItemModel(4, "Report post"))
-
-    val model = OptionSelectorDialogView.Companion.OptionSelectorDialogModel("Choose from options", itemModels, object : OptionSelectorDialogView.Companion.OptionSelectedListener {
-        override fun onOptionSelected(id: Int) {
-
-        }
-    })
-
-    DialogManager.showOptionSelectorDialog(this, model)
-    */
 
 }
